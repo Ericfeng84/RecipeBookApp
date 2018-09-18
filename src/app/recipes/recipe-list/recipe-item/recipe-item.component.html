@@ -1,11 +1,19 @@
-<li class="list-group-item d-flex" (click)="selectRecipeDetail()">
-  <div class="mr-auto">
-    <h5 class="">{{recipeItem.name}}</h5>
-    <p>{{recipeItem.description.slice(0,20)}}</p>
-  </div>
+<li [routerLink]=[recipeName]
+    routerLinkActive="Active"
+    class="list-group-item">
+  <a class="d-flex">
 
-  <div class="ml-auto">
-    <img src="{{recipeItem.imagePath}}" alt="" class="img-thumbnail" style="max-height: 50px">
-  </div>
+    <div class="mr-auto">
+      <h5 class="">{{recipeItem.name}}</h5>
+      <p>{{recipeItem.description.slice(0,20)}}</p>
+    </div>
 
+    <div class="ml-auto">
+      <img src="{{recipeItem.imagePath}}" alt="" class="img-thumbnail" style="max-height: 50px">
+    </div>
+
+
+  </a>
 </li>
+
+

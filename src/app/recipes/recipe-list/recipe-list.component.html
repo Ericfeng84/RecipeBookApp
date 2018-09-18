@@ -1,16 +1,18 @@
 <div class="row">
   <div class="col-xs-12">
-    <button class="btn btn-success">New Recipe</button>
+    <button class="btn btn-success" routerLink="new">New Recipe</button>
   </div>
 </div>
 <hr>
 <div class="row">
   <div class="col-xs-12">
-    <a class="list-group">
+    <a class="list-group" >
       <app-recipe-item *ngFor="let recipe of recipes"
                        [recipeItem] = recipe
-      ></app-recipe-item>
+                       style="cursor: pointer"
+                       [recipeName]=recipe.name
 
+      ></app-recipe-item>
     </a>
   </div>
 </div>
