@@ -7,11 +7,10 @@
 <div class="row">
   <div class="col-xs-12">
     <a class="list-group" >
-      <app-recipe-item *ngFor="let recipe of recipes"
+      <app-recipe-item *ngFor="let recipe of recipes, let i = index"
                        [recipeItem] = recipe
                        style="cursor: pointer"
-                       [recipeName]=recipe.name
-
+                       [recipeIndex]=i
       ></app-recipe-item>
     </a>
   </div>

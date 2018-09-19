@@ -17,7 +17,7 @@
       <div class="dropdown-menu" [ngClass]="{'show':r.isOpen}" aria-labelledby="btnGroupDrop1">
         <a class="dropdown-item" (click)="addShoppingList()">To Shopping List</a>
         <a class="dropdown-item" (click)= editRecipe() >Edit Recipe</a>
-        <a class="dropdown-item" >Delete Recipe</a>
+        <a class="dropdown-item" (click)="delRecipe()">Delete Recipe</a>
       </div>
 
     </div>

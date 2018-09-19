@@ -1,0 +1,15 @@
+#ingredientRow {
+  margin-top: 10px;
+}
+
+input.ng-invalid {
+  border-color: red;
+}
+
+textarea.ng-invalid{
+  border-color: red;
+}
+
+button {
+  margin-right: 5px;
+}

@@ -13,6 +13,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import {AppRoutingModule} from './app-routing.module';
 import { RecipesStartComponent } from './recipes/recipes-start/recipes-start.component';
 import { RecipesEditComponent } from './recipes/recipes-edit/recipes-edit.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -32,7 +33,9 @@ import { RecipesEditComponent } from './recipes/recipes-edit/recipes-edit.compon
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

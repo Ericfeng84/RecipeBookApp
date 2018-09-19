@@ -22,19 +22,28 @@ export class RecipeService {
   ];
   constructor(private shoppingListService: ShoppingListService) {}
   getRecipe() {
-    return this.recipes.slice();
+    return this.recipes;
   }
 
-  getRecipeItem(name: string) {
-    const findReceipe = this.recipes.find(
-      (s) => {
-        return s.name === name;
-      });
-    return findReceipe;
+  getRecipeItem(index: number) {
+    return this.recipes[index];
   }
 
   addItems(ingredients: Ingredient[]) {
     this.shoppingListService.addIngItems(ingredients);
+  }
+
+  addNewRecipe(recipe: Recipe) {
+    this.recipes.push(recipe);
+  }
+
+  updateRecipe(index: number, updateRecipe: Recipe) {
+    this.recipes[index] = updateRecipe;
+
+  }
+
+  delRecipe(index: number) {
+    this.recipes.splice(index, 1);
   }
 
 }
