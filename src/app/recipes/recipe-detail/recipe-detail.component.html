@@ -4,7 +4,7 @@
     <h5 class="card-title">{{chooseRecipe.name}}</h5>
     <p class="card-text">{{chooseRecipe.description}}</p>
 
-    <ul>
+    <ul *ngIf="chooseRecipe.recipeIngredients">
       <li *ngFor="let ingredient of chooseRecipe.recipeIngredients">
         {{ingredient.name}} ------- amount: {{ingredient.amount}}
       </li>

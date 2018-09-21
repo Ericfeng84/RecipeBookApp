@@ -29,6 +29,7 @@ export class RecipesEditComponent implements OnInit {
   }
 
   formInit() {
+    let recipeId = '';
     let recipeName = '';
     let recipeImageURL = '';
     let recipeDec = '';
@@ -36,6 +37,8 @@ export class RecipesEditComponent implements OnInit {
 
     if (this.editMode) {
       const recipe = this.recipeService.getRecipeItem(this.index);
+      console.log(recipe);
+      recipeId = recipe._id;
       recipeName = recipe.name;
       recipeImageURL = recipe.imagePath;
       recipeDec = recipe.description;
@@ -54,6 +57,7 @@ export class RecipesEditComponent implements OnInit {
     }
 
     this.recipeForm = new  FormGroup({
+      '_id': new FormControl(recipeId),
       'name': new FormControl(recipeName, Validators.required),
       'description': new FormControl(recipeDec, Validators.required),
       'imagePath': new FormControl(recipeImageURL, Validators.required),

@@ -21,8 +21,8 @@
             Manage
           </a>
           <div class="dropdown-menu" [ngClass]="{'show':r.isOpen}" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" >Save Date</a>
-            <a class="dropdown-item" >Fetch Data</a>
+            <a class="dropdown-item" (click)="onSave()">Save Date</a>
+            <a class="dropdown-item" (click)="onGet()">Fetch Data</a>
           </div>
         </li>
       </ul>
