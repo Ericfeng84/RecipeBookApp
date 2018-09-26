@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Recipe} from '../recipe-model';
 import {RecipeService} from '../recipes.service';
+import {DataStorageService} from '../../shared/data-storage.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -10,13 +11,25 @@ import {RecipeService} from '../recipes.service';
 export class RecipeListComponent implements OnInit {
   // @ts-ignore
   recipes: Recipe[] = [];
+  isLoading = true;
 
 
   constructor(private recipesService: RecipeService) { }
 
   ngOnInit() {
-    this.recipes = this.recipesService.getRecipe();
-    this.recipesService.receipesChange.subscribe((data:Recipe[]) => this.recipes = data)
+    this.getRecipe()
+    // this.recipesService.receipesChange.subscribe((data: Recipe[]) => this.recipes = data)
+  }
+
+  getRecipe() {
+    this.recipesService.getRecipe().subscribe(
+      (data: Recipe[]) => {
+        this.recipes = data;
+        this.recipesService.setRecipe(data);
+      },
+      error => console.log(error),
+      () => this.isLoading = false
+    );
   }
 
 

@@ -3,32 +3,23 @@ import {Injectable} from '@angular/core';
 import {Ingredient} from '../shared/ingredient.model';
 import {ShoppingListService} from '../shopping-list/shopping-list.service';
 import {Subject} from 'rxjs';
+import {HttpClient} from '../../../node_modules/@angular/common/http';
 
 @Injectable()
 export class RecipeService {
 
   // @ts-ignore
-  private recipes: Recipe[] = [];
+  recipes: Recipe[] = [];
   receipesChange = new Subject<Recipe[]>();
-  //   new Recipe('Apple Honey Glazed Chicken',
-  //     'This is my favorite chicken recipe. Everyone in my family loves this recipe and it is super easy',
-  //     'https://images.media-allrecipes.com/userphotos/720x405/5511701.jpg',
-  //     [new Ingredient('meat', 5),
-  //                         new Ingredient('apple', 7)
-  //     ]),
-  //   new Recipe('Chicken Honey Nut Stir Fry',
-  //     'This is my favorite chicken recipe. Everyone in my family loves this recipe and it is super easy',
-  //     'https://cdn.pixabay.com/photo/2015/10/26/07/21/soup-1006694_960_720.jpg',
-  //     [new Ingredient('fish', 5),
-  //       new Ingredient('tomato', 7)]),
-  // ];
-  constructor(private shoppingListService: ShoppingListService) {}
+  chooseRecipe: Recipe;
+
+  constructor(private shoppingListService: ShoppingListService, private http: HttpClient) {}
   getRecipe() {
-    return this.recipes;
+    return this.http.get('http://localhost:8000/recipes');
   }
 
-  getRecipeItem(index: number) {
-    return this.recipes[index];
+  getRecipeItem() {
+    return this.chooseRecipe;
   }
 
   addItems(ingredients: Ingredient[]) {
@@ -36,7 +27,8 @@ export class RecipeService {
   }
 
   addNewRecipe(recipe: Recipe) {
-    this.recipes.push(recipe);
+    console.log(recipe)
+    return this.http.post('http://localhost:8000/recipes', recipe);
   }
 
   setRecipe(recipe: Recipe[]) {
@@ -44,13 +36,31 @@ export class RecipeService {
     this.receipesChange.next(recipe);
   }
 
-  updateRecipe(index: number, updateRecipe: Recipe) {
-    this.recipes[index] = updateRecipe;
-
+  updateRecipe(index: string, updateRecipe: Recipe) {
+    const urls = 'http://localhost:8000/recipes/' + index;
+    return this.http.put(urls, updateRecipe);
   }
 
-  delRecipe(index: number) {
-    this.recipes.splice(index, 1);
+
+  chooseRecipeUpdate(recipe: Recipe){
+    this.chooseRecipe = recipe
+  }
+
+  updateLocalRecipes(recipe: Recipe){
+    const pos = this.recipes.map(elem => elem._id).indexOf(recipe._id);
+    this.recipes[pos] = recipe;
+  }
+
+  delLocalRecipe(recipe: Recipe){
+    const pos = this.recipes.map(elem => elem._id).indexOf(recipe._id);
+    this.recipes.splice(pos,1);
+    console.log(this.recipes)
+  }
+
+  delRecipe(id: string) {
+    const urls = 'http://localhost:8000/recipes/' + id;
+    console.log(urls);
+    return this.http.delete(urls);
   }
 
 }

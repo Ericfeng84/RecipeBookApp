@@ -12,17 +12,17 @@ export class HeaderComponent implements OnInit {
 
   constructor(private recipeService: RecipeService, private dataStorageService: DataStorageService) { }
 
-  onSave(){
-
-    this.dataStorageService.storeData().subscribe(
-      data => {
-        console.log(data);
-      }
-    );
-  }
+  // onSave(){
+  //
+  //   this.dataStorageService.storeData().subscribe(
+  //     data => {
+  //       console.log(data);
+  //     }
+  //   );
+  // }
 
   onGet() {
-    this.dataStorageService.getData()
+    // this.dataStorageService.getData();
   }
   ngOnInit() {
   }
